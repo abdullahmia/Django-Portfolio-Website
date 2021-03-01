@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block content %}
+    <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+    <!-- nagbar -->
+    {% include 'partials/_header.html' %}
+
+    <section class="hero-wrap js-fullheight" style="background-image: url('{{ post.image.url }}');"
+             data-stellar-background-ratio="0.5">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+                <div class="col-md-12 ftco-animate pb-5 mb-3 text-center">
+                    <h1 class="mb-3 bread">{{ post.title|truncatewords:4 }}</h1>
+                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                            class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="blog.html">Blog <i
+                            class="ion-ios-arrow-forward"></i></a></span> <span>Blog Single <i
+                            class="ion-ios-arrow-forward"></i></span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 ftco-animate">
+                    <h2 class="mb-3">{{ post.title }}</h2>
+
+                    <p>{{ post.description }}</p>
+
+
+                    <div class="pt-5 mt-5">
+                        <h3 class="mb-5">
+
+                            {% if comment_count == 1 %}
+
+                            {{ comment_count }} Comment
+                            {% else %}
+                            {{ comment_count }} Comments
+                            {% endif %}
+                        </h3>
+
+                        <ul class="comment-list">
+
+                            {% if comments %}
+                                {% for comment in comments %}
+                                    <li class="comment">
+                                        <div class="vcard bio">
+                                            <img src="{% static 'images/person_1.jpg' %}" alt="Image placeholder">
+                                        </div>
+                                        <div class="comment-body">
+                                            <h3>{{ comment.name }}</h3>
+                                            <div class="meta">{{ comment.created_at }}</div>
+                                            <p>{{ comment.message }}</p>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+
+                            {% else %}
+                                <li class="comment">No comment here</li>
+                            {% endif %}
+                        </ul>
+                        <!-- END comment-list -->
+
+                        <div class="comment-form-wrap pt-5">
+                            <h3 class="mb-5">Leave a comment</h3>
+                            <form action="{% url 'add_comment' post.id %}" method="post" class="p-5 bg-dark">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="name">Name *</label>
+                                    <input type="text" name="name" class="form-control" required id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" name="email" required class="form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website">Website</label>
+                                    <input type="url" class="form-control" id="website" name="website">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" cols="30" rows="10" name="message" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div> <!-- .col-md-8 -->
+                <div class="col-lg-4 sidebar ftco-animate">
+                    <div class="sidebar-box">
+                        <form action="#" class="search-form">
+                            <div class="form-group">
+                                <span class="icon icon-search"></span>
+                                <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="sidebar-box ftco-animate">
+                        <h3 class="heading-sidebar">Categories</h3>
+                        <ul class="categories">
+
+                            {% for category in categories %}
+                                <li><a href="#">{{ category.name }} <span>({{ category.blog.count }})</span></a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+
+
+                {% if recent_post %}
+
+
+                    <div class="sidebar-box ftco-animate">
+                        <h3 class="heading-sidebar">Recent Blog</h3>
+
+                        {% for post in recent_post %}
+
+                        <div class="block-21 mb-4 d-flex">
+                            <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                            <div class="text">
+                                <h3 class="heading"><a href="#">{{ post.title }}</a></h3>
+                                <div class="meta">
+                                    <div><a href="#"><span class="icon-calendar"></span> {{ post.created_at }} </a></div>
+                                    <div><a href="#"><span class="icon-person"></span> {{ post.user }}</a></div>
+                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+
+
+                {% endif %}
+
+                    <div class="sidebar-box ftco-animate">
+                        <h3 class="heading-sidebar">Tag Cloud</h3>
+                        <div class="tagcloud">
+                            <a href="#" class="tag-cloud-link">house</a>
+                            <a href="#" class="tag-cloud-link">office</a>
+                            <a href="#" class="tag-cloud-link">building</a>
+                            <a href="#" class="tag-cloud-link">land</a>
+                            <a href="#" class="tag-cloud-link">table</a>
+                            <a href="#" class="tag-cloud-link">interior</a>
+                            <a href="#" class="tag-cloud-link">exterior</a>
+                            <a href="#" class="tag-cloud-link">industrial</a>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-box ftco-animate">
+                        <h3 class="heading-sidebar">Paragraph</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem
+                            necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente
+                            consectetur similique, inventore eos fugit cupiditate numquam!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section> <!-- .section -->
+
+    {% include 'partials/_footer.html' %}
+
+    {% if setting.loader == 'On' %}
+        {% include 'partials/_loader.html' %}
+    {% endif %}
+
+
+{% endblock %}

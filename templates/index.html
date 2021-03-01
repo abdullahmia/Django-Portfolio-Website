@@ -1,0 +1,567 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ setting.site_title }}{% endblock %}
+
+{% block content %}
+
+
+    <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+
+    {% include 'partials/_header.html' %}
+
+    <section id="home-section" class="hero">
+        <div class="home-slider  owl-carousel">
+
+            {% if hero %}
+                {% for hero in hero %}
+                    <div class="slider-item ">
+                        <div class="overlay"></div>
+                        <div class="container">
+                            <div class="row d-md-flex no-gutters slider-text align-items-end justify-content-end"
+                                 data-scrollax-parent="true">
+                                <div class="one-third js-fullheight order-md-last img"
+                                     style="background-image:url({% static 'images/bg_1.png' %});">
+                                    <div class="overlay"></div>
+                                </div>
+                                <div class="one-forth d-flex  align-items-center ftco-animate"
+                                     data-scrollax=" properties: { translateY: '70%' }">
+                                    <div class="text">
+                                        <span class="subheading">{{ hero.greeting_text }}</span>
+                                        <h1 class="mb-4 mt-3">{{ hero.title }}</h1>
+                                        <h2 class="mb-4">{{ hero.sub_title }}</h2>
+                                        <p>
+
+                                            {% for i in hero_button %}
+                                                {% for d in i %}
+
+                                                    {% if hero.id == d.id %}
+                                                        <a href="{{ d.url }}"
+                                                       class="btn btn-{{ d.status }} py-3 px-4">{{ d.text }}</a>
+                                                    {% endif %}
+
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% endif %}
+
+
+
+        </div>
+    </section>
+
+    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
+        <div class="container">
+            <div class="row d-flex">
+                <div class="col-md-6 col-lg-5 d-flex">
+                    <div class="img-about img d-flex align-items-stretch">
+                        <div class="overlay"></div>
+                        <div class="img d-flex align-self-stretch align-items-center"
+                             style="background-image:url({{ about.image.url }});">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
+                    <div class="row justify-content-start pb-3">
+                        <div class="col-md-12 heading-section ftco-animate">
+                            <h1 class="big">About</h1>
+                            <h2 class="mb-4">About Me</h2>
+                            <p>A small river named Duden flows by their place and supplies it with the necessary
+                                regelialia.</p>
+                            <ul class="about-info mt-4 px-md-0 px-2">
+                                <li class="d-flex"><span>Name:</span> <span>{{ about.name }}</span></li>
+                                <li class="d-flex"><span>Date of birth:</span> <span>{{ about.birthday }}</span></li>
+                                <li class="d-flex"><span>Address:</span> <span>{{ about.address }}</span></li>
+                                <li class="d-flex"><span>Zip code:</span> <span>{{ about.zipcode }}</span></li>
+                                <li class="d-flex"><span>Email:</span> <span>{{ about.email }}</span></li>
+                                <li class="d-flex"><span>Phone: </span> <span>{{ about.phone }}</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="counter-wrap ftco-animate d-flex mt-md-3">
+                        <div class="text">
+                            <p class="mb-4">
+                                <span class="number" data-number="120">{{ about.total_project }}</span>
+                                <span>Project complete</span>
+                            </p>
+                            <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-no-pb" id="resume-section">
+        <div class="container">
+            <div class="row justify-content-center pb-5">
+                <div class="col-md-10 heading-section text-center ftco-animate">
+                    <h1 class="big big-2">Resume</h1>
+                    <h2 class="mb-4">Resume</h2>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia. It
+                        is a
+                        paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
+                </div>
+            </div>
+            <div class="row">
+
+                {% if resumes %}
+                    {% for resume in resumes %}
+
+                        <div class="col-md-6">
+                            <div class="resume-wrap ftco-animate">
+                                <span class="date">{{ resume.get_starting_year }}-{{ resume.get_ending_year }}</span>
+                                <h2>{{ resume.title }}</h2>
+                                <span class="position">{{ resume.university }}</span>
+                                <p class="mt-4">{{ resume.short_description }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                {% endif %}
+
+
+            </div>
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-6 text-center ftco-animate">
+                    <p><a href="#" class="btn btn-primary py-4 px-5">Download CV</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section" id="services-section">
+        <div class="container">
+            <div class="row justify-content-center py-5 mt-5">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h1 class="big big-2">Services</h1>
+                    <h2 class="mb-4">Services</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 text-center d-flex ftco-animate">
+                    <a href="#" class="services-1">
+							<span class="icon">
+								<i class="flaticon-analysis"></i>
+							</span>
+                        <div class="desc">
+                            <h3 class="mb-5">Web Design</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 text-center d-flex ftco-animate">
+                    <a href="#" class="services-1">
+							<span class="icon">
+								<i class="flaticon-flasks"></i>
+							</span>
+                        <div class="desc">
+                            <h3 class="mb-5">Phtography</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 text-center d-flex ftco-animate">
+                    <a href="#" class="services-1">
+							<span class="icon">
+								<i class="flaticon-ideas"></i>
+							</span>
+                        <div class="desc">
+                            <h3 class="mb-5">Web Developer</h3>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4 text-center d-flex ftco-animate">
+                    <a href="#" class="services-1">
+							<span class="icon">
+								<i class="flaticon-analysis"></i>
+							</span>
+                        <div class="desc">
+                            <h3 class="mb-5">App Developing</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 text-center d-flex ftco-animate">
+                    <a href="#" class="services-1">
+							<span class="icon">
+								<i class="flaticon-flasks"></i>
+							</span>
+                        <div class="desc">
+                            <h3 class="mb-5">Branding</h3>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4 text-center d-flex ftco-animate">
+                    <a href="#" class="services-1">
+							<span class="icon">
+								<i class="flaticon-ideas"></i>
+							</span>
+                        <div class="desc">
+                            <h3 class="mb-5">Product Strategy</h3>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section" id="skills-section">
+        <div class="container">
+            <div class="row justify-content-center pb-5">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h1 class="big big-2">Skills</h1>
+                    <h2 class="mb-4">My Skills</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 animate-box">
+                    <div class="progress-wrap ftco-animate">
+                        <h3>Photoshop</h3>
+                        <div class="progress">
+                            <div class="progress-bar color-1" role="progressbar" aria-valuenow="90"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:90%">
+                                <span>90%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <div class="progress-wrap ftco-animate">
+                        <h3>jQuery</h3>
+                        <div class="progress">
+                            <div class="progress-bar color-2" role="progressbar" aria-valuenow="85"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:85%">
+                                <span>85%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <div class="progress-wrap ftco-animate">
+                        <h3>HTML5</h3>
+                        <div class="progress">
+                            <div class="progress-bar color-3" role="progressbar" aria-valuenow="95"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:95%">
+                                <span>95%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <div class="progress-wrap ftco-animate">
+                        <h3>CSS3</h3>
+                        <div class="progress">
+                            <div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:90%">
+                                <span>90%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <div class="progress-wrap ftco-animate">
+                        <h3>WordPress</h3>
+                        <div class="progress">
+                            <div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
+                                <span>70%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <div class="progress-wrap ftco-animate">
+                        <h3>SEO</h3>
+                        <div class="progress">
+                            <div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
+                                 aria-valuemin="0" aria-valuemax="100" style="width:80%">
+                                <span>80%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="ftco-section ftco-project" id="projects-section">
+        <div class="container">
+            <div class="row justify-content-center pb-5">
+                <div class="col-md-12 heading-section text-center ftco-animate">
+                    <h1 class="big big-2">Projects</h1>
+                    <h2 class="mb-4">Our Projects</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="project img ftco-animate d-flex justify-content-center align-items-center"
+                         style="background-image: url({% static 'images/project-4.jpg' %});">
+                        <div class="overlay"></div>
+                        <div class="text text-center p-4">
+                            <h3><a href="#">Branding &amp; Illustration Design</a></h3>
+                            <span>Web Design</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="project img ftco-animate d-flex justify-content-center align-items-center"
+                         style="background-image: url("{% static 'images/project-5.jpg' %}");">
+                        <div class="overlay"></div>
+                        <div class="text text-center p-4">
+                            <h3><a href="#">Branding &amp; Illustration Design</a></h3>
+                            <span>Web Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-8">
+                    <div class="project img ftco-animate d-flex justify-content-center align-items-center"
+                         style="background-image: url({% static 'images/project-1.jpg' %});">
+                        <div class="overlay"></div>
+                        <div class="text text-center p-4">
+                            <h3><a href="#">Branding &amp; Illustration Design</a></h3>
+                            <span>Web Design</span>
+                        </div>
+                    </div>
+
+                    <div class="project img ftco-animate d-flex justify-content-center align-items-center"
+                         style="background-image: url({% static 'images/project-6.jpg' %});">
+                        <div class="overlay"></div>
+                        <div class="text text-center p-4">
+                            <h3><a href="#">Branding &amp; Illustration Design</a></h3>
+                            <span>Web Design</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="project img ftco-animate d-flex justify-content-center align-items-center"
+                                 style="background-image: url({% static 'images/project-2.jpg' %});">
+                                <div class="overlay"></div>
+                                <div class="text text-center p-4">
+                                    <h3><a href="#">Branding &amp; Illustration Design</a></h3>
+                                    <span>Web Design</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="project img ftco-animate d-flex justify-content-center align-items-center"
+                                 style="background-image: url({% static 'images/project-3.jpg' %});">
+                                <div class="overlay"></div>
+                                <div class="text text-center p-4">
+                                    <h3><a href="#">Branding &amp; Illustration Design</a></h3>
+                                    <span>Web Design</span>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if blog %}
+
+        <section class="ftco-section" id="blog-section">
+            <div class="container">
+                <div class="row justify-content-center mb-5 pb-5">
+                    <div class="col-md-7 heading-section text-center ftco-animate">
+                        <h1 class="big big-2">Blog</h1>
+                        <h2 class="mb-4">Our Blog</h2>
+                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                    </div>
+                </div>
+                <div class="row d-flex">
+
+                {% for post in blog %}
+
+                    <div class="col-md-4 d-flex ftco-animate">
+                        <div class="blog-entry justify-content-end">
+                            <a href="{% url 'blog_details' post.id %}" class="block-20"
+                               style="background-image: url('{{ post.image.url }}');">
+                            </a>
+                            <div class="text mt-3 float-right d-block">
+                                <div class="d-flex align-items-center mb-3 meta">
+                                    <p class="mb-0">
+                                        <span class="mr-2">{{ post.created_at }}</span>
+                                        <a href="#" class="mr-2">{{ post.user }}</a>
+                                        <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+                                    </p>
+                                </div>
+                                <h3 style="font-size: 15px" class="heading"><a href="{% url 'blog_details' post.id %}">{{ post.title|truncatewords:8 }}</a>
+                                </h3>
+                                <p style="font-size: 12px">{{ post.description|truncatewords:25 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                </div>
+            </div>
+        </section>
+
+    {% else %}
+
+    {% endif %}
+
+    <section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
+        <div class="container">
+            <div class="row d-md-flex align-items-center">
+                <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text">
+                            <strong class="number" data-number="100">0</strong>
+                            <span>Awards</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text">
+                            <strong class="number" data-number="1200">0</strong>
+                            <span>Complete Projects</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text">
+                            <strong class="number" data-number="1200">0</strong>
+                            <span>Happy Customers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md d-flex justify-content-center counter-wrap ftco-animate">
+                    <div class="block-18">
+                        <div class="text">
+                            <strong class="number" data-number="500">0</strong>
+                            <span>Cups of coffee</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7 ftco-animate text-center">
+                    <h2>I'm <span>Available</span> for freelancing</h2>
+                    <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+                    <p class="mb-0"><a href="#" class="btn btn-primary py-3 px-5">Hire me</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5 pb-3">
+                <div class="col-md-7 heading-section text-center ftco-animate">
+                    <h1 class="big big-2">Contact</h1>
+                    <h2 class="mb-4">Contact Me</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+                </div>
+            </div>
+
+            <div class="row d-flex contact-info mb-5">
+                <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                    <div class="align-self-stretch box p-4 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="icon-map-signs"></span>
+                        </div>
+                        <h3 class="mb-4">Address</h3>
+                        <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                    <div class="align-self-stretch box p-4 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="icon-phone2"></span>
+                        </div>
+                        <h3 class="mb-4">Contact Number</h3>
+                        <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                    <div class="align-self-stretch box p-4 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="icon-paper-plane"></span>
+                        </div>
+                        <h3 class="mb-4">Email Address</h3>
+                        <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3 d-flex ftco-animate">
+                    <div class="align-self-stretch box p-4 text-center">
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <span class="icon-globe"></span>
+                        </div>
+                        <h3 class="mb-4">Website</h3>
+                        <p><a href="#">yoursite.com</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row no-gutters block-9">
+                <div class="col-md-6 order-md-last d-flex">
+                    <form action="{% url 'contact_message' %}" method="post" class="bg-light p-4 p-md-5 contact-form">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" name="name" class="form-control" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="email" class="form-control" placeholder="Your Email">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="subject" class="form-control" placeholder="Subject">
+                        </div>
+                        <div class="form-group">
+                        <textarea name="message" id="" cols="30" rows="7" class="form-control"
+                                  placeholder="Message"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="col-md-6 d-flex">
+                    <div class="img" style="background-image: url(images/about.jpg);"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    {% include 'partials/_footer.html' %}
+
+    {% if setting.loader == 'On' %}
+        {% include 'partials/_loader.html' %}
+    {% endif %}
+
+
+
+
+
+
+
+{% endblock %}
