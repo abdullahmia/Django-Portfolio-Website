@@ -1,0 +1,109 @@
+{% extends 'dashboard/d_base.html' %}
+{% block title %}Dashboard | All Blogs{% endblock %}
+{% block content %}
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <!-- ======= navbar  ========= -->
+            {% include 'dashboard/partials/_dashboard_nav.html' %}
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <!--====  Sidebar  =====-->
+                    {% include 'dashboard/partials/_dashboard_sidebar.html' %}
+
+
+
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <!-- Main-body start -->
+                            <div class="main-body">
+                                <div class="page-wrapper">
+                                    <!-- Page-header start -->
+                                    <div class="page-header card">
+                                        <div class="row align-items-end">
+                                            <div class="col-lg-8">
+                                                <div class="page-header-title">
+                                                    <i class="icofont icofont-table bg-c-blue"></i>
+                                                    <div class="d-inline">
+                                                        <h4>All Blogs</h4>
+                                                        <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- Page-header end -->
+
+                                    <!-- Page-body start -->
+                                    <div class="page-body">
+                                        <!-- Basic table card start -->
+                                        <div class="card">
+                                            <div class="card-header">
+
+                                                <div class="card-header-right">
+                                                    <ul class="list-unstyled card-option">
+                                                        <li><i class="icofont icofont-simple-left "></i></li>
+                                                        <li><i class="icofont icofont-maximize full-card"></i></li>
+                                                        <li><i class="icofont icofont-minus minimize-card"></i></li>
+                                                        <li><i class="icofont icofont-refresh reload-card"></i></li>
+                                                        <li><i class="icofont icofont-error close-card"></i></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="card-block table-border-style">
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th>Title</th>
+
+                                                            <th>View</th>
+                                                            <th>Visit</th>
+                                                            <th>Edit</th>
+                                                            <th>Delete</th>
+                                                            <th></th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+
+
+                                                        {% for live_blog in live_blogs %}
+                                                        <tr>
+                                                            <td>{{ live_blog.title }}</td>
+                                                            <td>{{ live_blog.view }}</td>
+                                                            <td><a target="_blank" href="{% url 'blog_details' live_blog.id %}" class="btn"><i class="ti-eye"></i></a></td>
+                                                            <td><a href="#" class="btn"><i class="ti-pencil"></i></a></td>
+                                                            <td><a href="{% url 'delete_blog' live_blog.id %}" class="btn"><i class="ti-trash"></i></a></td>
+                                                        </tr>
+                                                        {% endfor %}
+
+
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- Page-body end -->
+                                </div>
+                            </div>
+                            <!-- Main-body end -->
+
+                            <div id="styleSelector">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

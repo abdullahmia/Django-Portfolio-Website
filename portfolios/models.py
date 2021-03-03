@@ -18,6 +18,28 @@ class SiteSettings(models.Model):
         return self.site_title
 
 
+class EnableSections(models.Model):
+    status = (
+        ('Show', 'Show'),
+        ('Hide', 'Hide'),
+    )
+    
+    header = models.CharField(max_length=5, choices=status, default='Shwo')
+    footer = models.CharField(max_length=5, choices=status, default='Show')
+    about = models.CharField(max_length=5, choices=status, default='show', blank=False)
+    resume = models.CharField(max_length=5, choices=status, default='Show')
+    service = models.CharField(max_length=5, choices=status, default='Show')
+    skill = models.CharField(max_length=5, choices=status, default='Show')
+    projects = models.CharField(max_length=5, choices=status, default='Show')
+    blog = models.CharField(max_length=5, choices=status, default='Show')
+    footer_section = models.CharField(max_length=5, choices=status, default='Show')
+    contact = models.CharField(max_length=5, choices=status, default='Show')
+    loader = models.CharField(max_length=5, choices=status, default='Show')
+    
+
+    def __str__(self):
+        return self.about
+
 
 class HeroSection(models.Model):
     greeting_text = models.CharField(max_length=255, blank=True)
@@ -96,6 +118,34 @@ class Contact(models.Model):
     email = models.EmailField(max_length=255)
     subject = models.CharField(max_length=255)
     message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+
+class SkillSection(models.Model):
+    status = (
+        ('Published', 'Published'),
+        ('Draft', 'Draft'),
+    )
+    name = models.CharField(max_length=255, blank=False)
+    value = models.PositiveBigIntegerField(default=0, blank=False)
+    status = models.CharField(max_length=10, choices=status, default='Published')
+
+    def __str__(self):
+        return self.name
+
+class Projects(models.Model):
+    status = (
+        ('Publish', 'Publish'),
+        ('Draft', 'Draft'),
+    )
+    title = models.CharField(max_length=100, blank=False)
+    category = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='Projects')
+    status = models.CharField(max_length=10, choices=status, default='Publish')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title

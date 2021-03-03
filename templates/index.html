@@ -8,8 +8,11 @@
 
     <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
+{% if enable_sections.header == 'Show' %}
 
     {% include 'partials/_header.html' %}
+
+{% endif %}
 
     <section id="home-section" class="hero">
         <div class="home-slider  owl-carousel">
@@ -38,7 +41,7 @@
 
                                                     {% if hero.id == d.id %}
                                                         <a href="{{ d.url }}"
-                                                       class="btn btn-{{ d.status }} py-3 px-4">{{ d.text }}</a>
+                                                           class="btn btn-{{ d.status }} py-3 px-4">{{ d.text }}</a>
                                                     {% endif %}
 
                                                 {% endfor %}
@@ -54,51 +57,60 @@
             {% endif %}
 
 
-
         </div>
     </section>
 
-    <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
-        <div class="container">
-            <div class="row d-flex">
-                <div class="col-md-6 col-lg-5 d-flex">
-                    <div class="img-about img d-flex align-items-stretch">
-                        <div class="overlay"></div>
-                        <div class="img d-flex align-self-stretch align-items-center"
-                             style="background-image:url({{ about.image.url }});">
+    {% if enable_sections.about == 'Show' %}
+
+
+
+        <section class="ftco-about img ftco-section ftco-no-pb" id="about-section">
+            <div class="container">
+                <div class="row d-flex">
+                    <div class="col-md-6 col-lg-5 d-flex">
+                        <div class="img-about img d-flex align-items-stretch">
+                            <div class="overlay"></div>
+                            <div class="img d-flex align-self-stretch align-items-center"
+                                 style="background-image:url({{ about.image.url }});">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
-                    <div class="row justify-content-start pb-3">
-                        <div class="col-md-12 heading-section ftco-animate">
-                            <h1 class="big">About</h1>
-                            <h2 class="mb-4">About Me</h2>
-                            <p>A small river named Duden flows by their place and supplies it with the necessary
-                                regelialia.</p>
-                            <ul class="about-info mt-4 px-md-0 px-2">
-                                <li class="d-flex"><span>Name:</span> <span>{{ about.name }}</span></li>
-                                <li class="d-flex"><span>Date of birth:</span> <span>{{ about.birthday }}</span></li>
-                                <li class="d-flex"><span>Address:</span> <span>{{ about.address }}</span></li>
-                                <li class="d-flex"><span>Zip code:</span> <span>{{ about.zipcode }}</span></li>
-                                <li class="d-flex"><span>Email:</span> <span>{{ about.email }}</span></li>
-                                <li class="d-flex"><span>Phone: </span> <span>{{ about.phone }}</span></li>
-                            </ul>
+                    <div class="col-md-6 col-lg-7 pl-lg-5 pb-5">
+                        <div class="row justify-content-start pb-3">
+                            <div class="col-md-12 heading-section ftco-animate">
+                                <h1 class="big">About</h1>
+                                <h2 class="mb-4">About Me</h2>
+                                <p>A small river named Duden flows by their place and supplies it with the necessary
+                                    regelialia.</p>
+                                <ul class="about-info mt-4 px-md-0 px-2">
+                                    <li class="d-flex"><span>Name:</span> <span>{{ about.name }}</span></li>
+                                    <li class="d-flex"><span>Date of birth:</span> <span>{{ about.birthday }}</span>
+                                    </li>
+                                    <li class="d-flex"><span>Address:</span> <span>{{ about.address }}</span></li>
+                                    <li class="d-flex"><span>Zip code:</span> <span>{{ about.zipcode }}</span></li>
+                                    <li class="d-flex"><span>Email:</span> <span>{{ about.email }}</span></li>
+                                    <li class="d-flex"><span>Phone: </span> <span>{{ about.phone }}</span></li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="counter-wrap ftco-animate d-flex mt-md-3">
-                        <div class="text">
-                            <p class="mb-4">
-                                <span class="number" data-number="120">{{ about.total_project }}</span>
-                                <span>Project complete</span>
-                            </p>
-                            <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+                        <div class="counter-wrap ftco-animate d-flex mt-md-3">
+                            <div class="text">
+                                <p class="mb-4">
+                                    <span class="number" data-number="120">{{ about.total_project }}</span>
+                                    <span>Project complete</span>
+                                </p>
+                                <p><a href="#" class="btn btn-primary py-3 px-3">Download CV</a></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+
+    {% endif %}
+
+    {% if enable_sections.resume == 'Show' %}
 
     <section class="ftco-section ftco-no-pb" id="resume-section">
         <div class="container">
@@ -137,6 +149,12 @@
             </div>
         </div>
     </section>
+
+    {% endif %}
+
+
+    {% if enable_sections.service == 'Show' %}
+
 
     <section class="ftco-section" id="services-section">
         <div class="container">
@@ -213,6 +231,10 @@
         </div>
     </section>
 
+    {% endif %}
+
+    {% if enable_sections.skill == 'Show' %}
+
 
     <section class="ftco-section" id="skills-section">
         <div class="container">
@@ -224,76 +246,35 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>Photoshop</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-1" role="progressbar" aria-valuenow="90"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:90%">
-                                <span>90%</span>
+
+                {% if skills %}
+                    {% for skill in skills %}
+                        <div class="col-md-6 animate-box">
+                            <div class="progress-wrap ftco-animate">
+                                <h3>{{ skill.name }}</h3>
+                                <div class="progress">
+                                    <div class="progress-bar color-1" role="progressbar"
+                                         aria-valuenow="{{ skill.value }}"
+                                         aria-valuemin="0" aria-valuemax="100" style="width:{{ skill.value }}%">
+                                        <span>{{ skill.value }}%</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>jQuery</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-2" role="progressbar" aria-valuenow="85"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:85%">
-                                <span>85%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>HTML5</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-3" role="progressbar" aria-valuenow="95"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:95%">
-                                <span>95%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>CSS3</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-4" role="progressbar" aria-valuenow="90"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:90%">
-                                <span>90%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>WordPress</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:70%">
-                                <span>70%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 animate-box">
-                    <div class="progress-wrap ftco-animate">
-                        <h3>SEO</h3>
-                        <div class="progress">
-                            <div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
-                                 aria-valuemin="0" aria-valuemax="100" style="width:80%">
-                                <span>80%</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                    {% endfor %}
+
+                {% else %}
+                    <h2>There is no such skills of yours.....😥😥😥</h2>
+                {% endif %}
+
+
             </div>
         </div>
     </section>
 
+    {% endif %}
+
+    {% if enable_sections.projects == 'Show' %}
 
     <section class="ftco-section ftco-project" id="projects-section">
         <div class="container">
@@ -305,78 +286,40 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                         style="background-image: url({% static 'images/project-4.jpg' %});">
-                        <div class="overlay"></div>
-                        <div class="text text-center p-4">
-                            <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                            <span>Web Design</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                         style="background-image: url("{% static 'images/project-5.jpg' %}");">
-                        <div class="overlay"></div>
-                        <div class="text text-center p-4">
-                            <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                            <span>Web Design</span>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="col-md-8">
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                         style="background-image: url({% static 'images/project-1.jpg' %});">
-                        <div class="overlay"></div>
-                        <div class="text text-center p-4">
-                            <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                            <span>Web Design</span>
-                        </div>
-                    </div>
-
-                    <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                         style="background-image: url({% static 'images/project-6.jpg' %});">
-                        <div class="overlay"></div>
-                        <div class="text text-center p-4">
-                            <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                            <span>Web Design</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="row">
-                        <div class="col-md-12">
+                {% if projects %}
+                    {% for project in projects %}
+                        <div class="col-md-6">
                             <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                                 style="background-image: url({% static 'images/project-2.jpg' %});">
+                                 style="background-image: url({{ project.image.url }});">
                                 <div class="overlay"></div>
                                 <div class="text text-center p-4">
-                                    <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                                    <span>Web Design</span>
+                                    <h3><a href="#">{{ project.title }}</a></h3>
+                                    <span>{{ project.category }}</span>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                                 style="background-image: url({% static 'images/project-3.jpg' %});">
-                                <div class="overlay"></div>
-                                <div class="text text-center p-4">
-                                    <h3><a href="#">Branding &amp; Illustration Design</a></h3>
-                                    <span>Web Design</span>
-                                </div>
-                            </div>
-                        </div>
+                    {% endfor %}
+
+                {% else %}
+                    <h3>No such Projects here..,....</h3>
+                {% endif %}
 
 
 
-                    </div>
-                </div>
             </div>
+
+
+
+        </div>
         </div>
     </section>
 
-    {% if blog %}
+
+    {% endif %}
+
+
+    {% if enable_sections.blog == 'Show' %}
 
         <section class="ftco-section" id="blog-section">
             <div class="container">
@@ -389,36 +332,39 @@
                 </div>
                 <div class="row d-flex">
 
-                {% for post in blog %}
+                    {% for post in blog %}
 
-                    <div class="col-md-4 d-flex ftco-animate">
-                        <div class="blog-entry justify-content-end">
-                            <a href="{% url 'blog_details' post.id %}" class="block-20"
-                               style="background-image: url('{{ post.image.url }}');">
-                            </a>
-                            <div class="text mt-3 float-right d-block">
-                                <div class="d-flex align-items-center mb-3 meta">
-                                    <p class="mb-0">
-                                        <span class="mr-2">{{ post.created_at }}</span>
-                                        <a href="#" class="mr-2">{{ post.user }}</a>
-                                        <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
-                                    </p>
+                        <div class="col-md-4 d-flex ftco-animate">
+                            <div class="blog-entry justify-content-end">
+                                <a href="{% url 'blog_details' post.id %}" class="block-20"
+                                   style="background-image: url('{{ post.image.url }}');">
+                                </a>
+                                <div class="text mt-3 float-right d-block">
+                                    <div class="d-flex align-items-center mb-3 meta">
+                                        <p class="mb-0">
+                                            <span class="mr-2">{{ post.created_at }}</span>
+                                            <a href="#" class="mr-2">{{ post.user }}</a>
+                                            <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>
+                                        </p>
+                                    </div>
+                                    <h3 style="font-size: 15px" class="heading"><a
+                                            href="{% url 'blog_details' post.id %}">{{ post.title|truncatewords:8 }}</a>
+                                    </h3>
+                                    <p style="font-size: 12px">{{ post.description|truncatewords:25 }}</p>
                                 </div>
-                                <h3 style="font-size: 15px" class="heading"><a href="{% url 'blog_details' post.id %}">{{ post.title|truncatewords:8 }}</a>
-                                </h3>
-                                <p style="font-size: 12px">{{ post.description|truncatewords:25 }}</p>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
+                    {% endfor %}
 
                 </div>
             </div>
         </section>
 
-    {% else %}
-
     {% endif %}
+
+
+    {% if enable_sections.footer_section == 'Show' %}
+
 
     <section class="ftco-section ftco-no-pt ftco-no-pb ftco-counter img" id="section-counter">
         <div class="container">
@@ -459,6 +405,10 @@
         </div>
     </section>
 
+    {% endif %}
+
+
+    {% if enable_sections.contact == 'Show' %}
     <section class="ftco-section ftco-hireme img margin-top" style="background-image: url(images/bg_1.jpg)">
         <div class="container">
             <div class="row justify-content-center">
@@ -470,6 +420,9 @@
             </div>
         </div>
     </section>
+
+
+
 
     <section class="ftco-section contact-section ftco-no-pb" id="contact-section">
         <div class="container">
@@ -545,23 +498,25 @@
                 </div>
 
                 <div class="col-md-6 d-flex">
-                    <div class="img" style="background-image: url(images/about.jpg);"></div>
+                    <div class="img" style="background-image: url({% static 'images/about.jpg' %});"></div>
                 </div>
             </div>
         </div>
     </section>
 
 
-    {% include 'partials/_footer.html' %}
-
-    {% if setting.loader == 'On' %}
-        {% include 'partials/_loader.html' %}
     {% endif %}
 
+{% if enable_sections.footer == 'Show' %}
+
+    {% include 'partials/_footer.html' %}
+
+{% endif %}
 
 
-
-
+    {% if setting.loader == 'Show' %}
+        {% include 'partials/_loader.html' %}
+    {% endif %}
 
 
 {% endblock %}

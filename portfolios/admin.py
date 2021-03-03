@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SiteSettings, Buttons, HeroSection, AboutUs, Resume, Contact
+from .models import SiteSettings, Buttons, HeroSection, AboutUs, Resume, Contact, SkillSection, EnableSections, Projects
 
 class SiteSettingsAdmin(admin.ModelAdmin):
     list_display = ['title', 'logo_text', 'loader']
@@ -11,6 +11,9 @@ admin.site.register(Buttons)
 class InlineButtons(admin.TabularInline):
     model = Buttons
     extra = 1
+    
+# Enable Sections
+admin.site.register(EnableSections)
 
 
 # HeroSection
@@ -46,3 +49,13 @@ class ContactAdmin(admin.ModelAdmin):
     list_per_page = 20
 
 admin.site.register(Contact, ContactAdmin)
+
+
+# For Skill Progress Sections
+class SkillSectionAdmin(admin.ModelAdmin):
+    list_display = ['name', 'value', 'status']
+    list_editable = ('value', 'status', )
+admin.site.register(SkillSection, SkillSectionAdmin)
+
+# For Projects
+admin.site.register(Projects)

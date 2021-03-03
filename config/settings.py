@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'portfolios',
     'blog.apps.BlogConfig',
+    'site_admin.apps.SiteAdminConfig',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,253 @@
+{% extends 'dashboard/d_base.html' %}
+{% block title %}Dashboard | Site Settings{% endblock %}
+
+{% block content %}
+
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <!--======= NARBAR  ==========-->
+            {% include 'dashboard/partials/_dashboard_nav.html' %}
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+
+                    <!--====  Sidebar  =====-->
+                    {% include 'dashboard/partials/_dashboard_sidebar.html' %}
+
+
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            <div class="main-body">
+                                <div class="page-wrapper">
+
+                                    <div class="page-body">
+                                        <div class="page-header card">
+                                            <div class="row align-items-end">
+                                                <div class="col-lg-8">
+                                                    <div class="page-header-title">
+                                                        <i class="icofont icofont-file-code bg-c-blue"></i>
+                                                        <div class="d-inline">
+                                                            <h4>Enable/Disable Block of Website</h4>
+                                                            <span>Lorem ipsum dolor sit <code>amet</code>, consectetur adipisicing elit</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5>Enable & Disable Sections</h5>
+
+
+                                    </div>
+                                    <div class="card-block">
+
+
+                                        <form method="post">
+                                            {% csrf_token %}
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Header : </label>
+                                                <div class="col-sm-10"> 
+                                                    <select name="header" class="form-control">
+
+                                                        {% if settings %}
+                                                            <option value="Show"
+                                                            {% if settings.header == 'Show' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Show</option>
+                                                            <option value="Hide"
+                                                            {% if settings.header == 'Hide' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Hide</option>
+                                                        {% endif %}
+
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">About Me : </label>
+                                                <div class="col-sm-10">
+                                                    <select name="about" class="form-control">
+                                                        {% if settings %}
+                                                            <option value="Show"
+                                                            {% if settings.about == 'Show' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Show</option>
+                                                            <option value="Hide"
+                                                            {% if settings.about == 'Hide' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Hide</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Resume : </label>
+                                                <div class="col-sm-10">
+                                                    <select name="resume" class="form-control">
+                                                        {% if settings %}
+                                                            <option value="Show"
+                                                            {% if settings.resume == 'Show' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Show</option>
+                                                            <option value="Hide"
+                                                            {% if settings.resume == 'Hide' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Hide</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Services : </label>
+                                                <div class="col-sm-10">
+                                                    <select name="service" class="form-control">
+                                                        {% if settings %}
+                                                            <option value="Show"
+                                                            {% if settings.service == 'Show' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Show</option>
+                                                            <option value="Hide"
+                                                            {% if settings.service == 'Hide' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Hide</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Skill : </label>
+                                                <div class="col-sm-10">
+                                                    <select name="skill" class="form-control">
+                                                        {% if settings %}
+                                                            <option value="Show"
+                                                            {% if settings.skill == 'Show' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Show</option>
+                                                            <option value="Hide"
+                                                            {% if settings.skill == 'Hide' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Hide</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Projects : </label>
+                                                <div class="col-sm-10">
+                                                    <select name="project" class="form-control">
+                                                        {% if settings %}
+                                                            <option value="Show"
+                                                            {% if settings.project == 'Show' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Show</option>
+                                                            <option value="Hide"
+                                                            {% if settings.project == 'Hide' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Hide</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Contact : </label>
+                                                <div class="col-sm-10">
+                                                    <select name="contact" class="form-control">
+                                                        {% if settings %}
+                                                            <option value="Show"
+                                                            {% if settings.contact == 'Show' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Show</option>
+                                                            <option value="Hide"
+                                                            {% if settings.contact == 'Hide' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Hide</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Footer : </label>
+                                                <div class="col-sm-10">
+                                                    <select name="footer" class="form-control">
+                                                        {% if settings %}
+                                                            <option value="Show"
+                                                            {% if settings.footer == 'Show' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Show</option>
+                                                            <option value="Hide"
+                                                            {% if settings.footer == 'Hide' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Hide</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-2 col-form-label">Loader : </label>
+                                                <div class="col-sm-10">
+                                                    <select name="loader" class="form-control">
+                                                        {% if settings %}
+                                                            <option value="Show"
+                                                            {% if settings.loader == 'Show' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Show</option>
+                                                            <option value="Hide"
+                                                            {% if settings.loader == 'Hide' %}
+                                                            selected
+                                                            {% endif %}
+                                                            >Hide</option>
+                                                        {% endif %}
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <input class="btn btn-primary btn-block" type="submit" value="Save" >
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div id="styleSelector">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

@@ -9,13 +9,30 @@
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav nav ml-auto">
                 <li class="nav-item"><a href="#home-section" class="nav-link"><span>Home</span></a></li>
-                <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+
+                {% if enable_sections.about == 'Show' %}
+                    <li class="nav-item"><a href="#about-section" class="nav-link"><span>About</span></a></li>
+                {% endif %}
+
+                {% if enable_sections.resume == 'Show' %}
                 <li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
+                {% endif %}
+                {% if enable_sections.service == 'Show' %}
                 <li class="nav-item"><a href="#services-section" class="nav-link"><span>Services</span></a></li>
+                {% endif %}
+                {% if enable_sections.skill == 'Show' %}
                 <li class="nav-item"><a href="#skills-section" class="nav-link"><span>Skills</span></a></li>
+                {% endif %}
+                {% if enable_sections.projects == 'Show' %}
                 <li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li>
+                {% endif %}
+                {% if enable_sections.blog == 'Show' %}
                 <li class="nav-item"><a href="#blog-section" class="nav-link"><span>My Blog</span></a></li>
+                {% endif %}
+                {% if enable_sections.contact == 'Show' %}
                 <li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
+                {% endif %}
+
             </ul>
         </div>
     </div>
