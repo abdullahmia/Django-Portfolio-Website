@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 # import Site Setting models
-from portfolios.models import EnableSections, Resume, Projects
+from portfolios.models import EnableSections, Resume, Projects, AboutUs
 
 # import messange and notification from profolio app
 from portfolios.models import Contact
@@ -191,5 +191,37 @@ def add_delete_project(request, id):
     item.delete()
     messages.add_message(request, messages.SUCCESS, 'Project has been deleted')
     return redirect(url)
+
+
+@login_required(login_url='login')
+def aboutus(request):
+    data = AboutUs.objects.get(pk=1)
+
+    if request.method == 'POST':
+        url = request.META.get('HTTP_REFERER')
+        name = request.POST.get('name')
+        birthday = request.POST.get('birthday')
+        address = request.POST.get('address')
+        zipcode = request.POST.get('zipcode')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        image = request.FILES['image']
+
+        get_data = AboutUs.objects.get(pk=1)
+        get_data.name = name
+        get_data.birthday = birthday
+        get_data.address = address
+        get_data.zipcode = zipcode
+        get_data.email = email
+        get_data.phone = phone
+        get_data.image = image
+        get_data.save()
+        messages.add_message(request, messages.SUCCESS, 'Data Edited')
+        return redirect(url)
+
+    ctx = {
+        'data': data
+    }
+    return render(request, 'dashboard/aboutus.html', ctx)
 
 

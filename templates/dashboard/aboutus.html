@@ -1,0 +1,112 @@
+{% extends 'dashboard/d_base.html' %}
+{% block title %}Dashboard | All Blogs{% endblock %}
+{% block content %}
+    <div id="pcoded" class="pcoded">
+        <div class="pcoded-overlay-box"></div>
+        <div class="pcoded-container navbar-wrapper">
+
+            <!-- ======= navbar  ========= -->
+            {% include 'dashboard/partials/_dashboard_nav.html' %}
+
+            <div class="pcoded-main-container">
+                <div class="pcoded-wrapper">
+                    <!--====  Sidebar  =====-->
+                    {% include 'dashboard/partials/_dashboard_sidebar.html' %}
+
+
+                    <div class="pcoded-content">
+                        <div class="pcoded-inner-content">
+                            {% include '_alerts.html' %}
+                            <div style="padding: 100px;" class="row">
+                                <div class="col-lg-12 col-xl-12 m-auto">
+                                    <!-- <h6 class="sub-title">Tab With Icon</h6> -->
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <img style="width: 300px;height: 300px" src="{{ data.image.url }}"
+                                                 alt="about us image">
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div style="margin-top: 100px;">
+                                                <ul>
+                                                    <li><b>Name</b> : {{ data.name }}</li>
+                                                    <li><b>Date of Birth</b> : {{ data.birthday }}</li>
+                                                    <li><b>Address</b> : {{ data.address }}</li>
+                                                    <li><b>Zip Code</b> : {{ data.zipcode }}</li>
+                                                    <li><b>Email</b> : {{ data.email }}</li>
+                                                    <li><b>Phone</b> : {{ data.phone }}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <section>
+                                <div style="margin-bottom: 50px;" class="header">
+                                    <h2 class="text-center">Edit About us Centent</h2>
+                                </div>
+                                <div style="width: 600px; margin: 0 auto; -webkit-box-shadow: 3px 4px 16px -1px #51BEFF;
+box-shadow: 3px 4px 16px -1px #51BEFF; padding: 30px;" class="form">
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Name</label>
+                                            <input value="{{ data.name }}" name="name" type="text" placeholder="Name" class="form-control" id="exampleInputEmail1"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Birthday : (Cureent : {{ data.birthday }})</label>
+                                            <input required type="date" placeholder="Date of BIrth" name="birthday" class="form-control" id="exampleInputEmail1"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Address</label>
+                                            <input value="{{ data.address }}" name="address" type="text" placeholder="Address" class="form-control" id="exampleInputEmail1"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Zip Code</label>
+                                            <input value="{{ data.zipcode }}" name="zipcode" type="number" placeholder="Zip Code" class="form-control" id="exampleInputEmail1"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Email</label>
+                                            <input value="{{ data.email }}" type="email" placeholder="email" name="email" class="form-control" id="exampleInputEmail1"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Phone</label>
+                                            <input value="{{ data.phone }}" name="phone" type="text" placeholder="phone" class="form-control" id="exampleInputEmail1"
+                                                   aria-describedby="emailHelp">
+                                        </div>
+
+
+                                        <input required type="file" value="{{ data.image.url }}" name="image" class="form-control">
+                                        <br>
+
+
+                                        <button type="submit" class="btn btn-primary btn-block">Edit</button>
+                                    </form>
+                                </div>
+                            </section>
+
+
+                        </div>
+                        <!-- Main-body end -->
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+{% endblock %}
