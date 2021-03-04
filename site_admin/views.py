@@ -11,7 +11,37 @@ from blog.models import Blog
 # import message framework
 from django.contrib import messages
 
+# For Authencation
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+def admin_login(request):
+
+    if request.session.has_key('login'):
+        return redirect('dashboard')
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        get_user = authenticate(username=username, password=password)
+        if get_user is not None:
+            login(request, get_user)
+            request.session['login'] = True
+            return redirect('dashboard')
+        else:
+            messages.add_message(request, messages.WARNING, 'Invalid info')
+            return redirect('login')
+
+
+    return render(request, 'dashboard/login.html')
+
+def admin_logout(request):
+    logout(request)
+    return redirect('login')
+
+@login_required(login_url='login')
 def dashboard(request):
     contacts = Contact.objects.all().order_by('-created_at')
     ctx = {
@@ -19,7 +49,7 @@ def dashboard(request):
     }
     return render(request, 'dashboard/dashboard.html', ctx)
 
-
+@login_required(login_url='login')
 def site_settings(request):
     if request.method == 'POST':
         header = request.POST.get('header')
@@ -49,7 +79,7 @@ def site_settings(request):
     }
     return render(request, 'dashboard/site_settings.html', ctx)
 
-
+@login_required(login_url='login')
 def all_blog(request):
     live_blogs = Blog.objects.filter(status='Publish')
     drafts = Blog.objects.filter(status='Draft')
@@ -66,7 +96,7 @@ def delete_blog(request, id):
     del_item.delete()
     return redirect(url)
 
-
+@login_required(login_url='login')
 def resume(request):
     resume = Resume.objects.filter(status=True)
     draft = Resume.objects.filter(status=False)
@@ -89,7 +119,7 @@ def resume(request):
         'draft': draft,
     }
     return render(request, 'dashboard/resume.html', ctx)
-
+@login_required(login_url='login')
 def add_draft_resume(request, id):
     url = request.META.get('HTTP_REFERER')
     item = Resume.objects.get(pk=id)
@@ -106,7 +136,7 @@ def add_publish_resume(request, id):
     messages.add_message(request, messages.SUCCESS, 'Resume is now Live')
     return redirect(url)
 
-
+@login_required(login_url='login')
 def add_delete_resume(request, id):
     url = request.META.get('HTTP_REFERER')
     item = Resume.objects.get(pk=id)
@@ -114,7 +144,7 @@ def add_delete_resume(request, id):
     messages.add_message(request, messages.SUCCESS, 'Resume has been deleted')
     return redirect(url)
 
-
+@login_required(login_url='login')
 def projects(request):
     project = Projects.objects.filter(status='Publish')
     draft = Projects.objects.filter(status='Draft')
@@ -137,7 +167,7 @@ def projects(request):
     return render(request, 'dashboard/projects.html', ctx)
 
 
-
+@login_required(login_url='login')
 def add_draft_project(request, id):
     url = request.META.get('HTTP_REFERER')
     item = Projects.objects.get(pk=id)
@@ -154,10 +184,12 @@ def add_publish_project(request, id):
     messages.add_message(request, messages.SUCCESS, 'Project is now Live')
     return redirect(url)
 
-
+@login_required(login_url='login')
 def add_delete_project(request, id):
     url = request.META.get('HTTP_REFERER')
     item = Projects.objects.get(pk=id)
     item.delete()
     messages.add_message(request, messages.SUCCESS, 'Project has been deleted')
     return redirect(url)
+
+
