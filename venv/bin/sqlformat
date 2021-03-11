@@ -1,6 +1,4 @@
-#!/bin/sh
-'''exec' "/media/darknoob/WORK/DJANGO ALL PROJECTS/django_portfolio/venv/bin/python" "$0" "$@"
-' '''
+#!/home/darknoob/Django/Django-Portfolio-Website/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys

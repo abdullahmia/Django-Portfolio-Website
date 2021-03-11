@@ -1,4 +1,4 @@
-#!/media/darknoob/WORK/DJANGO ALL PROJECTS/django_portfolio/venv/bin/python
+#!/home/darknoob/Django/Django-Portfolio-Website/venv/bin/python
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 
