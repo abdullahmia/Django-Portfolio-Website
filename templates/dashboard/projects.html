@@ -13,7 +13,6 @@
                     <!--====  Sidebar  =====-->
                     {% include 'dashboard/partials/_dashboard_sidebar.html' %}
 
-
                     <div class="pcoded-content">
                         <div class="pcoded-inner-content">
                             <!-- Main-body start -->
@@ -130,28 +129,36 @@
                                                         {% csrf_token %}
                                                         <div class="form-group">
                                                             <label for="exampleFormControlTextarea1">Title</label>
-                                                            <input type="text" name="title" class="form-control"
+                                                            <input required type="text" name="title" class="form-control"
                                                                    id="exampleInputEmail1" aria-describedby="emailHelp"
                                                                    placeholder="Resume title">
 
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleFormControlTextarea1">Category</label>
-                                                            <input type="text" name="category" class="form-control"
+                                                            <input required type="text" name="category" class="form-control"
                                                                    id="exampleInputPassword1"
                                                                    placeholder="Category">
                                                         </div>
 
                                                         <div class="form-group">
+                                                            <label for="exampleFormControlTextarea1">Live Demo Link</label>
+                                                            <input type="url" name="url" class="form-control"
+                                                                   id="exampleInputEmail1" aria-describedby="emailHelp"
+                                                                   placeholder="Live Demo Link">
+
+                                                        </div>
+
+                                                        <div class="form-group">
                                                             <label for="exampleFormControlTextarea1">Status</label>
-                                                            <select name="status" class="form-control form-control-sm">
+                                                            <select required name="status" class="form-control form-control-sm">
                                                                 <option value="Publish">Publish</option>
                                                                 <option value="Draft">Draft</option>
                                                             </select>
                                                         </div>
 
                                                         <div class="form-group">
-                                                            <input type="file" name="image" class="form-control">
+                                                            <input required type="file" name="image" class="form-control">
                                                         </div>
                                                         <button type="submit" class="btn btn-primary btn-block">Submit
                                                         </button>

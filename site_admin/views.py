@@ -154,9 +154,10 @@ def projects(request):
         category = request.POST.get('category')
         image = request.FILES['image']
         status = request.POST.get('status')
+        live_url = request.POST.get('url')
         url = request.META.get('HTTP_REFERER')
 
-        add_project = Projects.objects.create(title=title, category=category, image=image, status=status)
+        add_project = Projects.objects.create(title=title, category=category, image=image, status=status, live_link=live_url)
         add_project.save()
         messages.add_message(request, messages.SUCCESS, 'Project has been added..')
         return redirect(url)
