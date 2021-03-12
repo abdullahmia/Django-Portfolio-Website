@@ -146,6 +146,7 @@ class Projects(models.Model):
     image = models.ImageField(upload_to='Projects')
     status = models.CharField(max_length=10, choices=status, default='Publish')
     created_at = models.DateTimeField(auto_now_add=True)
+    live_link = models.URLField(blank=True)
 
     def __str__(self):
         return self.title

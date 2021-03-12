@@ -289,16 +289,18 @@
 
                 {% if projects %}
                     {% for project in projects %}
-                        <div class="col-md-6">
-                            <div class="project img ftco-animate d-flex justify-content-center align-items-center"
-                                 style="background-image: url({{ project.image.url }});">
-                                <div class="overlay"></div>
-                                <div class="text text-center p-4">
-                                    <h3><a href="#">{{ project.title }}</a></h3>
-                                    <span>{{ project.category }}</span>
+                        <a href="{{ project.live_link }}">
+                            <div class="col-md-6">
+                                <div class="project img ftco-animate d-flex justify-content-center align-items-center"
+                                     style="background-image: url({{ project.image.url }});">
+                                    <div class="overlay"></div>
+                                    <div class="text text-center p-4">
+                                        <h3><a href="#">{{ project.title }}</a></h3>
+                                        <span>{{ project.category }}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     {% endfor %}
 
                 {% else %}
