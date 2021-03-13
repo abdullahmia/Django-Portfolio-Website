@@ -15,7 +15,7 @@
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
                 <div class="col-md-12 ftco-animate pb-5 mb-3 text-center">
                     <h1 class="mb-3 bread">{{ post.title|truncatewords:4 }}</h1>
-                    <p class="breadcrumbs"><span class="mr-2"><a href="index.html">Home <i
+                    <p class="breadcrumbs"><span class="mr-2"><a href="{% url 'index' %}">Home <i
                             class="ion-ios-arrow-forward"></i></a></span> <span class="mr-2"><a href="blog.html">Blog <i
                             class="ion-ios-arrow-forward"></i></a></span> <span>Blog Single <i
                             class="ion-ios-arrow-forward"></i></span></p>
@@ -38,9 +38,9 @@
 
                             {% if comment_count == 1 %}
 
-                            {{ comment_count }} Comment
+                                {{ comment_count }} Comment
                             {% else %}
-                            {{ comment_count }} Comments
+                                {{ comment_count }} Comments
                             {% endif %}
                         </h3>
 
@@ -85,7 +85,8 @@
 
                                 <div class="form-group">
                                     <label for="message">Message</label>
-                                    <textarea id="message" cols="30" rows="10" name="message" class="form-control"></textarea>
+                                    <textarea id="message" cols="30" rows="10" name="message"
+                                              class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" value="Post Comment" class="btn py-3 px-4 btn-primary">
@@ -118,31 +119,32 @@
                     </div>
 
 
-                {% if recent_post %}
+                    {% if recent_post %}
 
 
-                    <div class="sidebar-box ftco-animate">
-                        <h3 class="heading-sidebar">Recent Blog</h3>
+                        <div class="sidebar-box ftco-animate">
+                            <h3 class="heading-sidebar">Recent Blog</h3>
 
-                        {% for post in recent_post %}
+                            {% for post in recent_post %}
 
-                        <div class="block-21 mb-4 d-flex">
-                            <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
-                            <div class="text">
-                                <h3 class="heading"><a href="#">{{ post.title }}</a></h3>
-                                <div class="meta">
-                                    <div><a href="#"><span class="icon-calendar"></span> {{ post.created_at }} </a></div>
-                                    <div><a href="#"><span class="icon-person"></span> {{ post.user }}</a></div>
-                                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                <div class="block-21 mb-4 d-flex">
+                                    <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                                    <div class="text">
+                                        <h3 class="heading"><a href="#">{{ post.title }}</a></h3>
+                                        <div class="meta">
+                                            <div><a href="#"><span class="icon-calendar"></span> {{ post.created_at }}
+                                            </a></div>
+                                            <div><a href="#"><span class="icon-person"></span> {{ post.user }}</a></div>
+                                            <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            {% endfor %}
+
                         </div>
-                        {% endfor %}
-
-                    </div>
 
 
-                {% endif %}
+                    {% endif %}
 
                     <div class="sidebar-box ftco-animate">
                         <h3 class="heading-sidebar">Tag Cloud</h3>
@@ -158,12 +160,8 @@
                         </div>
                     </div>
 
-                    <div class="sidebar-box ftco-animate">
-                        <h3 class="heading-sidebar">Paragraph</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem
-                            necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente
-                            consectetur similique, inventore eos fugit cupiditate numquam!</p>
-                    </div>
+
+
                 </div>
 
             </div>

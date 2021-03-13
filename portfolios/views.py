@@ -62,6 +62,7 @@ def blog_details(request, id):
     recent_post = Blog.objects.filter(status='Publish')[::-1]
     comments = Comment.objects.filter(post_id=id)
     comment_count = comments.count()
+    recent_comments = Comment.objects.all()[::-1]
 
 
     ctx = {
@@ -71,6 +72,7 @@ def blog_details(request, id):
         'recent_post': recent_post,
         'comments': comments,
         'comment_count': comment_count,
+        'recent_comments': recent_comments,
     }
     return render(request, 'single.html', ctx)
 

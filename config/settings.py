@@ -16,7 +16,6 @@ import django_heroku
 import dj_database_url
 from decouple import config
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -36,6 +35,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # General use templates & template tags (should appear first)
+    'adminlte3',
+     # Optional: Django admin theme (must be before django.contrib.admin)
+    'adminlte3_theme',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,7 +51,6 @@ INSTALLED_APPS = [
 
     'portfolios',
     'blog.apps.BlogConfig',
-    'site_admin.apps.SiteAdminConfig',
 ]
 
 MIDDLEWARE = [
